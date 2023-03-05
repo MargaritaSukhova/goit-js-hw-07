@@ -21,7 +21,6 @@ function createGalleryMarkup(photos) {
 galleryEl.insertAdjacentHTML("afterbegin", galleryMarkup);
 
 let gallery = new SimpleLightbox(".gallery a", {
-	captions: true,
 	captionsData: "alt",
 	captionDelay: 250,
 });
