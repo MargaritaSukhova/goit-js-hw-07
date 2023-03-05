@@ -27,6 +27,8 @@ galleryEl.insertAdjacentHTML("afterbegin", galleryMarkup);
 
 galleryEl.addEventListener("click", handlePhotoClick);
 
+let instance = {};
+
 function handlePhotoClick(event) {
 	event.preventDefault();
 
@@ -36,9 +38,21 @@ function handlePhotoClick(event) {
 
 	const url = event.target.dataset.source;
 
-	const instance = basicLightbox.create(`
+	instance = basicLightbox.create(`
     <img src="${url}" width="800" height="600">
 `);
 
 	instance.show();
+
+	return instance;
+}
+
+document.addEventListener("keydown", handleModalClose);
+
+function handleModalClose(event) {
+	if (event.code === "Escape") {
+		if (basicLightbox.visible()) {
+			instance.close();
+		}
+	}
 }
