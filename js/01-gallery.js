@@ -37,7 +37,7 @@ function handlePhotoClick(event) {
 	const url = event.target.dataset.source;
 
 	const instance = basicLightbox.create(`
-    <img src="${url}">
+    <img src="${url}" width="800" height="600">
 `);
 
 	instance.show();
