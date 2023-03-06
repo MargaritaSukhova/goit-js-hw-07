@@ -38,23 +38,16 @@ function handlePhotoClick(event) {
 
 	const url = event.target.dataset.source;
 
-	modal = basicLightbox.create(`
-    <img src="${url}" width="800" height="600">
-`);
+	modal = basicLightbox.create(`<img src="${url}" width="800" height="600">`, {
+		onShow: () => document.addEventListener("keydown", handleModalClose),
+		onClose: () => document.removeEventListener("keydown", handleModalClose),
+	});
 
 	modal.show();
-
-	return modal;
 }
-
-document.addEventListener("keydown", handleModalClose);
 
 function handleModalClose(event) {
 	if (event.code === "Escape") {
-		if (basicLightbox.visible()) {
-			modal.close();
-		} else {
-			document.removeEventListener("keydown", handleModalClose);
-		}
+		modal.close();
 	}
 }
